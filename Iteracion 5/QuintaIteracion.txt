@@ -1,0 +1,42 @@
+PRIMER PUNTO 
+
+Para poder manejar varios guardarropas para separar segun criterios, los Usuaries de Que Me Pongo conoceran una lista de guardarropas propios que seguirán un determinado criterio, establecido
+por un Enum segun el criterio 
+
+SEGUNDO PUNTO 
+
+Ademas, el Usuarie de que me pongo tendra una lista de GuardarropasCompartidos los cuales conocen a los Usuaries que son miembro de ese guardarropas. 
+
+TERCER Y CUARTO PUNTO
+
+Para poder realizar una sugerencia para un guardarropas compartido el Guardarropa conoce sus propuestas y mediante el mismo, el Usuarie podra sugerir agregar o quitar Propuestas.
+
+Dicha solicitud el Usuarie podra realizar la siguiente consulta 
+
+guardarropasCompartido.sugerirAgregarPrenda(remeraAzulManchadaConLavandina);
+
+Consulta que partira a crear una propuesta con estado PENDIENTE_DE_ANALISIS
+
+QUINTO PUNTO
+
+Para poder analizar las propuestas de modificación el Usuarie podra acceder a cada una de las propuestas del guardarropas que podra agregarle el estado de ACEPTADA o RECHAZADA dependiendo
+lo que desee siguiendo la siguiente consulta
+
+guardarropasCompartido.getPropuestas().forEach(propuesta -> this.aceptarPropuesta(propuesta));
+guardarropasCompartido.getPropuestas().forEach(propuesta -> propuesta.rechazarPropuesta());
+
+Si la propuesta es aceptada, se agregara a su propia lista de propuestas aceptadas de la siguiente forma
+
+void aceptarPropuesta(Propuesta propuesta){
+propuesta.aceptarPropuesta();
+this.propuestasAceptadas.add(propuesta);
+}
+
+SEXTO PUNTO 
+
+Para poder deshacer las propuestasAceptadas el Usuarie podra acceder a la lista de propuestas aceptadas, y poder rechazar la propuesta que desee:
+
+void deshacerPropuestaAceptada(Propuesta propuesta){
+propuesta.rechazarPropuesta();
+this.propuestasAceptadas.remove(propuesta);
+}
